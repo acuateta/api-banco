@@ -1,0 +1,42 @@
+version: '3.4'
+
+services:
+
+  mysql_server:
+    build: dockerfile-mysql/
+    image: mysql_banco:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_DATABASE=bancoDB
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=p3dr0
+    volumes: 
+      - my-data:/var/lib/mysql/
+    ports:
+      - "3306:3306"
+    restart: on-failure
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - backend
+
+  microservicio:
+    build: Banco/
+    image: api_banco:latest
+    environment: 
+      - port=3306
+      - database=bancoDB
+      - username=root
+      - password=p3dr0
+    depends_on: 
+      - mysql_server
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    networks:
+      - backend
+
+volumes:
+  my-data:
+
+networks:
+  backend: 

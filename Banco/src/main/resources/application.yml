@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+
+#    hibernate:
+#      ddl-auto: create-drop
+#    show-sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/bancoDB?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&useSSL=false&requireSSL=false
+    username: root
+    password: pedr0
