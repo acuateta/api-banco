@@ -12,6 +12,6 @@ spring:
 #      ddl-auto: create-drop
 #    show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/bancoDB?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&useSSL=false&requireSSL=false
-    username: root
-    password: pedr0
+    url: jdbc:mysql://${host}:${port}/bancoDB?useUnicode=true&allowPublicKeyRetrieval=true&characterEncoding=utf8&useSSL=false&requireSSL=false
+    username: ${username}
+    password: ${password}

@@ -6,12 +6,13 @@ services:
     build: dockerfile-mysql/
     image: mysql_banco:latest
     environment:
-      - MYSQL_ROOT_PASSWORD=toor
+      - MYSQL_ROOT_PASSWORD=hooch
       - MYSQL_DATABASE=bancoDB
-      - MYSQL_USER=root
+      - MYSQL_USER=cuateta
       - MYSQL_PASSWORD=p3dr0
-    volumes: 
-      - my-data:/var/lib/mysql/
+      - MYSQL_ROOT_HOST=%
+    #volumes: 
+    #  - my-data:/var/lib/mysql/
     ports:
       - "3306:3306"
     restart: on-failure
@@ -23,9 +24,10 @@ services:
     build: Banco/
     image: api_banco:latest
     environment: 
+      - host=mysql_server
       - port=3306
       - database=bancoDB
-      - username=root
+      - username=cuateta
       - password=p3dr0
     depends_on: 
       - mysql_server
